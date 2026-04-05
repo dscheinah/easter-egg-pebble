@@ -1,0 +1,33 @@
+{
+  "name": "easter-egg",
+  "author": "Dscheinah",
+  "version": "1.0.0",
+  "keywords": ["pebble-app"],
+  "private": true,
+  "dependencies": {},
+  "pebble": {
+    "displayName": "Easter Egg",
+    "uuid": "ef75a0cc-735c-4492-a3b8-35d2c85ddd44",
+    "sdkVersion": "3",
+    "enableMultiJS": true,
+    "targetPlatforms": [
+      "basalt",
+      "chalk",
+      "diorite",
+      "emery",
+      "flint",
+      "gabbro"
+    ],
+    "watchapp": {
+      "watchface": false
+    },
+    "messageKeys": [
+    ],
+    "resources": {
+      "media": []
+    },
+    "capabilities": [
+      "health"
+    ]
+  }
+}
