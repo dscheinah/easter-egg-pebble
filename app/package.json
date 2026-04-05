@@ -24,7 +24,44 @@
     "messageKeys": [
     ],
     "resources": {
-      "media": []
+      "media": [
+        {
+          "menuIcon": true,
+          "file": "icon.png",
+          "name": "ICON",
+          "type": "bitmap"
+        },
+        {
+          "file": "egg.png",
+          "name": "EGG",
+          "type": "bitmap"
+        },
+        {
+          "file": "ears.png",
+          "name": "EARS",
+          "type": "bitmap"
+        },
+        {
+          "file": "eyes.png",
+          "name": "EYES",
+          "type": "bitmap"
+        },
+        {
+          "file": "whiskers.png",
+          "name": "WHISKERS",
+          "type": "bitmap"
+        },
+        {
+          "file": "clouds.png",
+          "name": "CLOUDS",
+          "type": "bitmap"
+        },
+        {
+          "file": "flowers.png",
+          "name": "FLOWERS",
+          "type": "bitmap"
+        }
+      ]
     },
     "capabilities": [
       "health"

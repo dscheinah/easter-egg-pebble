@@ -1,0 +1,70 @@
+<svg width="200" height="228" viewBox="0 0 200 228" xmlns="http://www.w3.org/2000/svg">
+  <g fill="none" stroke="black" stroke-width="2">
+    <g>
+      <path d="M100 55 C75 55, 50 95, 50 135 C50 185, 75 210, 100 210 C125 210, 150 185, 150 135 C150 95, 125 55, 100 55 Z"/>
+    </g>
+
+    <g>
+      <path d="M85 55 C75 20, 95 10, 100 40"/>
+      <path d="M115 55 C125 20, 105 10, 100 40"/>
+    </g>
+
+    <g>
+      <circle cx="85" cy="125" r="6" fill="black"/>
+      <circle cx="87" cy="123" r="2" fill="white"/>
+      <circle cx="115" cy="125" r="6" fill="black"/>
+      <circle cx="117" cy="123" r="2" fill="white"/>
+    </g>
+
+    <g>
+      <line x1="50" y1="118" x2="20" y2="115"/>
+      <line x1="50" y1="125" x2="20" y2="125"/>
+      <line x1="50" y1="132" x2="20" y2="135"/>
+
+      <line x1="150" y1="118" x2="180" y2="115"/>
+      <line x1="150" y1="125" x2="180" y2="125"/>
+      <line x1="150" y1="132" x2="180" y2="135"/>
+    </g>
+
+    <g>
+      <path d="M10 30 q10 -10 20 0 q10 -10 20 0 q10 10 0 15 h-40 q-10 -5 0 -15z"/>
+      <path d="M30 40 q10 -10 20 0 q10 -10 20 0 q10 10 0 15 h-40 q-10 -5 0 -15z"/>
+      <path d="M150 30 q10 -10 20 0 q10 -10 20 0 q10 10 0 15 h-40 q-10 -5 0 -15z"/>
+      <path d="M130 40 q10 -10 20 0 q10 -10 20 0 q10 10 0 15 h-40 q-10 -5 0 -15z"/>
+    </g>
+
+    <g>
+      <circle cx="30" cy="200" r="4"/>
+      <circle cx="30" cy="190" r="4"/>
+      <circle cx="22" cy="196" r="4"/>
+      <circle cx="38" cy="196" r="4"/>
+      <circle cx="24" cy="206" r="4"/>
+      <circle cx="36" cy="206" r="4"/>
+      <line x1="30" y1="204" x2="30" y2="220"/>
+
+      <circle cx="55" cy="205" r="4"/>
+      <circle cx="55" cy="195" r="4"/>
+      <circle cx="47" cy="201" r="4"/>
+      <circle cx="63" cy="201" r="4"/>
+      <circle cx="49" cy="211" r="4"/>
+      <circle cx="61" cy="211" r="4"/>
+      <line x1="55" y1="209" x2="55" y2="225"/>
+
+      <circle cx="170" cy="200" r="4"/>
+      <circle cx="170" cy="190" r="4"/>
+      <circle cx="162" cy="196" r="4"/>
+      <circle cx="178" cy="196" r="4"/>
+      <circle cx="164" cy="206" r="4"/>
+      <circle cx="176" cy="206" r="4"/>
+      <line x1="170" y1="204" x2="170" y2="220"/>
+
+      <circle cx="145" cy="205" r="4"/>
+      <circle cx="145" cy="195" r="4"/>
+      <circle cx="137" cy="201" r="4"/>
+      <circle cx="153" cy="201" r="4"/>
+      <circle cx="139" cy="211" r="4"/>
+      <circle cx="151" cy="211" r="4"/>
+      <line x1="145" y1="209" x2="145" y2="225"/>
+    </g>
+  </g>
+</svg>
