@@ -2,6 +2,7 @@
 #include "health/health.h"
 #include "state/global.h"
 #include "state/state.h"
+#include "wakeup/wakeup.h"
 #include "window/main.h"
 
 static Window *s_window;
@@ -31,8 +32,13 @@ static void prv_click_config_provider(void *context) {
 
 static void prv_init(void) {
   state = state_init();
-  if (health_init(state) && !quiet_time_is_active()) {
+  bool notify = health_init(state);
+  bool wakeup = wakeup_init(state);
+  if (notify && !quiet_time_is_active()) {
     vibes_enqueue_custom_pattern(vibes);
+  }
+  if (wakeup && !notify) {
+    return;
   }
   main_init(state);
 

@@ -14,4 +14,5 @@ typedef struct {
   unsigned short level;
   unsigned int exp;
   Health* health;
+  WakeupId wakeup;
 } State;

@@ -17,6 +17,7 @@ static State state = {
   .day = 0,
   .level = 1,
   .exp = 0,
+  .wakeup = -1,
 };
 
 State* state_init() {
