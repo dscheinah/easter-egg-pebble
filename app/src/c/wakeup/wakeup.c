@@ -14,7 +14,7 @@ static void wakeup_handler() {
   if (global->wakeup >= 0 && wakeup_query(global->wakeup, NULL)) {
     return;
   }
-  time_t timeout = time(NULL) + (rand() % SECONDS_PER_DAY);
+  time_t timeout = time(NULL) + SECONDS_PER_HOUR + (rand() % SECONDS_PER_HOUR);
   for (int try = 0; try < MAX_TRY; try++) {
     global->wakeup = wakeup_schedule(timeout, 0, true);
     if (global->wakeup >= 0) {
