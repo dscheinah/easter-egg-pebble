@@ -16,11 +16,11 @@ static void wakeup_handler() {
   }
   time_t timeout = time(NULL) + (rand() % SECONDS_PER_DAY);
   for (int try = 0; try < MAX_TRY; try++) {
-     global->wakeup = wakeup_schedule(timeout, 0, true);
-     if (global->wakeup >= 0) {
-       break;
-     }
-     timeout += SECONDS_PER_MINUTE;
+    global->wakeup = wakeup_schedule(timeout, 0, true);
+    if (global->wakeup >= 0) {
+      break;
+    }
+    timeout += SECONDS_PER_MINUTE;
   }
 }
 
