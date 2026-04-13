@@ -75,7 +75,7 @@ static void render(Layer* layer, GContext* ctx) {
   graphics_context_set_fill_color(ctx, GColorFromRGB(egg_r, egg_g, egg_b));
   graphics_fill_rect(ctx, bounds, 0, GCornersAll);
 
-  if (show_v_bar) {
+  if (show_v_bar || global->level == LEVEL_V_BAR) {
     graphics_context_set_fill_color(ctx, GColorFromRGB(v_bar_r, v_bar_g, v_bar_b));
     for (int i = 0; i < 10; i++) {
       GRect target = GRect(i * bounds.size.w / (rand() % 10), 0, rand() % (bounds.size.w / 10), bounds.size.h);
@@ -84,7 +84,7 @@ static void render(Layer* layer, GContext* ctx) {
     }
   }
 
-  if (show_h_bar) {
+  if (show_h_bar || global->level == LEVEL_H_BAR) {
     graphics_context_set_fill_color(ctx, GColorFromRGB(h_bar_r, h_bar_g, h_bar_b));
     for (int i = 0; i < 10; i++) {
       GRect target = GRect(0, i * bounds.size.h / (rand() % 10), bounds.size.w, rand() % (bounds.size.h / 10));
@@ -93,7 +93,7 @@ static void render(Layer* layer, GContext* ctx) {
     }
   }
 
-  if (show_dots) {
+  if (show_dots || global->level == LEVEL_DOTS) {
     graphics_context_set_fill_color(ctx, GColorFromRGB(dot_r, dot_g, dot_b));
     for (int i = 0; i < 10; i++) {
       GPoint target = GPoint(rand() % bounds.size.w, rand() % bounds.size.h);
