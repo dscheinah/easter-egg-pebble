@@ -9,7 +9,7 @@ static Window *s_window;
 
 State* state;
 
-static const uint32_t durations[] = {300, 50, 50, 50, 50, 50, 50};
+static const uint32_t durations[] = {400, 100, 100, 100, 100, 100, 100};
 static const VibePattern vibes = {
   .durations = durations,
   .num_segments = ARRAY_LENGTH(durations),
