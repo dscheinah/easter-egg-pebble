@@ -15,21 +15,6 @@ static const VibePattern vibes = {
   .num_segments = ARRAY_LENGTH(durations),
 };
 
-static void prv_up_click_handler(ClickRecognizerRef recognizer, void *context) {
-  state->seed--;
-  main_render();
-}
-
-static void prv_down_click_handler(ClickRecognizerRef recognizer, void *context) {
-  state->seed++;
-  main_render();
-}
-
-static void prv_click_config_provider(void *context) {
-  window_single_click_subscribe(BUTTON_ID_UP, prv_up_click_handler);
-  window_single_click_subscribe(BUTTON_ID_DOWN, prv_down_click_handler);
-}
-
 static void prv_init(void) {
   state = state_init();
   bool notify = health_init(state);
@@ -43,7 +28,6 @@ static void prv_init(void) {
   main_init(state);
 
   s_window = window_create();
-  window_set_click_config_provider(s_window, prv_click_config_provider);
   window_set_window_handlers(s_window, (WindowHandlers) {
     .load = main_load,
     .unload = main_unload,

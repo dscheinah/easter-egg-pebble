@@ -60,6 +60,21 @@
           "file": "flowers.png",
           "name": "FLOWERS",
           "type": "bitmap"
+        },
+        {
+          "file": "action_bar_icon_down.png",
+          "name": "ACTION_BAR_ICON_DOWN",
+          "type": "bitmap"
+        },
+        {
+          "file": "action_bar_icon_up.png",
+          "name": "ACTION_BAR_ICON_UP",
+          "type": "bitmap"
+        },
+        {
+          "file": "action_bar_icon_dismiss.png",
+          "name": "ACTION_BAR_ICON_DISMISS",
+          "type": "bitmap"
         }
       ]
     },
