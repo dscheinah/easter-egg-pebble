@@ -3,7 +3,7 @@
 #include "main.h"
 #include "helper.h"
 
-#define BUFFER_SIZE 64
+#define BUFFER_SIZE 128
 
 static State* global;
 
@@ -54,7 +54,59 @@ void main_init(State* state) {
   egg_init(state);
 
   int exp = global->exp / state->level;
-  snprintf(buffer, BUFFER_SIZE, "Lvl %d\nExp %d%%", global->level, exp);
+
+  int done = global->quest_target_done;
+  int target = global->quest_target;
+  char quest[8] = "";
+  char unit[4] = "";
+  char counter[10] = "";
+  switch (state->quest) {
+    case QUEST_STEPS:
+      strncpy(quest, "Steps", 8);
+      break;
+    case QUEST_ACTIVE:
+      strncpy(quest, "Active", 8);
+      strncpy(unit, "min", 4);
+      done /= SECONDS_PER_MINUTE;
+      target /= SECONDS_PER_MINUTE;
+      break;
+    case QUEST_SLEEP:
+      strncpy(quest, "Sleep", 8);
+      strncpy(unit, "h", 4);
+      done /= SECONDS_PER_HOUR;
+      target /= SECONDS_PER_HOUR;
+      break;
+    case QUEST_RESTFUL:
+      strncpy(quest, "Restful", 8);
+      strncpy(unit, "h", 4);
+      done /= SECONDS_PER_HOUR;
+      target /= SECONDS_PER_HOUR;
+      break;
+    case QUEST_STEPS_TIME:
+      strncpy(quest, "Steps", 8);
+      strncpy(unit, "min", 4);
+      done = global->quest_duration_done / SECONDS_PER_MINUTE;
+      target = global->quest_duration / SECONDS_PER_MINUTE;
+      snprintf(counter, 10, "%d", (int) global->quest_target_done);
+      break;
+    case QUEST_ALL_TIME:
+      strncpy(quest, "Health", 8);
+      strncpy(unit, "h", 4);
+      done = global->quest_duration_done / SECONDS_PER_HOUR;
+      target = global->quest_duration / SECONDS_PER_HOUR;
+      snprintf(counter, 10, "%d", (int) global->quest_target_done / 100);
+      break;
+  }
+
+  snprintf(buffer, BUFFER_SIZE, "Level %d\nExp %d%%\nQuest %s\n%d/%d %s\n%s",
+    global->level,
+    exp,
+    quest,
+    done,
+    target,
+    unit,
+    counter
+  );
 }
 
 void main_load(Window* window) {

@@ -18,6 +18,12 @@ static State state = {
   .level = 1,
   .exp = 0,
   .wakeup = -1,
+  .quest = 0,
+  .quest_duration = 0,
+  .quest_target = 0,
+  .quest_duration_done = 0,
+  .quest_target_done = 0,
+  .quest_duration_start = 0,
 };
 
 State* state_init() {
