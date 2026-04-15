@@ -22,6 +22,7 @@
 #define LEVEL_DOTS_R   19
 #define LEVEL_V_BAR_R  20
 #define LEVEL_WHISKERS 21
+#define LEVEL_DOT_SIZE 22
 
 static State* global;
 
@@ -51,9 +52,9 @@ static int get_color_value(int level) {
 
 static void render(Layer* layer, GContext* ctx) {
   srand(global->seed);
-  bool show_h_bar = rand() % 2 && global->level >= LEVEL_H_BAR;
-  bool show_v_bar = rand() % 2 && global->level >= LEVEL_V_BAR;
-  bool show_dots = rand() % 2 && global->level >= LEVEL_DOTS;
+  bool show_h_bar = rand() % 2 && global->level > LEVEL_H_BAR;
+  bool show_v_bar = rand() % 2 && global->level > LEVEL_V_BAR;
+  bool show_dots = rand() % 2 && global->level > LEVEL_DOTS;
   int egg_r = get_color_value(LEVEL_EGG_R);
   int egg_g = get_color_value(LEVEL_EGG_G);
   int egg_b = get_color_value(LEVEL_EGG_B);
@@ -97,8 +98,9 @@ static void render(Layer* layer, GContext* ctx) {
     graphics_context_set_fill_color(ctx, GColorFromRGB(dot_r, dot_g, dot_b));
     for (int i = 0; i < 10; i++) {
       GPoint target = GPoint(rand() % bounds.size.w, rand() % bounds.size.h);
-      graphics_draw_circle(ctx, target, 10);
-      graphics_fill_circle(ctx, target, 9);
+      int size = global->level >= LEVEL_DOT_SIZE ? rand() % 10 + 5 : 10;
+      graphics_draw_circle(ctx, target, size);
+      graphics_fill_circle(ctx, target, size - 1);
     }
   }
 }
