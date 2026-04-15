@@ -76,29 +76,29 @@ static void render(Layer* layer, GContext* ctx) {
   graphics_context_set_fill_color(ctx, GColorFromRGB(egg_r, egg_g, egg_b));
   graphics_fill_rect(ctx, bounds, 0, GCornersAll);
 
-  if (show_v_bar || global->level == LEVEL_V_BAR) {
-    graphics_context_set_fill_color(ctx, GColorFromRGB(v_bar_r, v_bar_g, v_bar_b));
-    for (int i = 0; i < 10; i++) {
-      GRect target = GRect(i * bounds.size.w / (rand() % 10), 0, rand() % (bounds.size.w / 10), bounds.size.h);
+  graphics_context_set_fill_color(ctx, GColorFromRGB(v_bar_r, v_bar_g, v_bar_b));
+  for (int i = 0; i < 10; i++) {
+    GRect target = GRect(i * bounds.size.w / (rand() % 10), 0, rand() % (bounds.size.w / 10), bounds.size.h);
+    if (show_v_bar || global->level == LEVEL_V_BAR) {
       graphics_draw_rect(ctx, target);
       graphics_fill_rect(ctx, GRect(target.origin.x + 2, target.origin.y, target.size.w - 4, target.size.h), 0, GCornerNone);
     }
   }
 
-  if (show_h_bar || global->level == LEVEL_H_BAR) {
-    graphics_context_set_fill_color(ctx, GColorFromRGB(h_bar_r, h_bar_g, h_bar_b));
-    for (int i = 0; i < 10; i++) {
-      GRect target = GRect(0, i * bounds.size.h / (rand() % 10), bounds.size.w, rand() % (bounds.size.h / 10));
+  graphics_context_set_fill_color(ctx, GColorFromRGB(h_bar_r, h_bar_g, h_bar_b));
+  for (int i = 0; i < 10; i++) {
+    GRect target = GRect(0, i * bounds.size.h / (rand() % 10), bounds.size.w, rand() % (bounds.size.h / 10));
+    if (show_h_bar || global->level == LEVEL_H_BAR) {
       graphics_draw_rect(ctx, target);
       graphics_fill_rect(ctx, GRect(target.origin.x, target.origin.y + 2, target.size.w, target.size.h - 4), 0, GCornerNone);
     }
   }
 
-  if (show_dots || global->level == LEVEL_DOTS) {
-    graphics_context_set_fill_color(ctx, GColorFromRGB(dot_r, dot_g, dot_b));
-    for (int i = 0; i < 10; i++) {
-      GPoint target = GPoint(rand() % bounds.size.w, rand() % bounds.size.h);
-      int size = global->level >= LEVEL_DOT_SIZE ? rand() % 10 + 5 : 10;
+  graphics_context_set_fill_color(ctx, GColorFromRGB(dot_r, dot_g, dot_b));
+  for (int i = 0; i < 10; i++) {
+    GPoint target = GPoint(rand() % bounds.size.w, rand() % bounds.size.h);
+    int size = global->level >= LEVEL_DOT_SIZE ? rand() % 10 + 5 : 10;
+    if (show_dots || global->level == LEVEL_DOTS) {
       graphics_draw_circle(ctx, target, size);
       graphics_fill_circle(ctx, target, size - 1);
     }
