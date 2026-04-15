@@ -3,15 +3,21 @@
 #include "main.h"
 #include "helper.h"
 
+#define BUFFER_SIZE 64
+
 static State* global;
 
 static Layer* layer;
+
+static TextLayer* text_layer;
 
 static ActionBarLayer* action_bar;
 
 static GBitmap* action_bar_icon_up;
 static GBitmap* action_bar_icon_dismiss;
 static GBitmap* action_bar_icon_down;
+
+static char buffer[BUFFER_SIZE] = "";
 
 static void render(Layer* layer, GContext* ctx) {
   GRect bounds = layer_get_bounds(layer);
@@ -27,7 +33,9 @@ static void up_click_handler(ClickRecognizerRef recognizer, void *context) {
 
 static void select_click_handler(ClickRecognizerRef recognizer, void *context) {
   Layer* layer = action_bar_layer_get_layer(action_bar);
-  layer_set_hidden(layer, !layer_get_hidden(layer));
+  bool hidden = !layer_get_hidden(layer);
+  layer_set_hidden(layer, hidden);
+  layer_set_hidden(text_layer_get_layer(text_layer), hidden);
 }
 
 static void down_click_handler(ClickRecognizerRef recognizer, void *context) {
@@ -44,6 +52,9 @@ static void action_bar_click_config_provider(void *context) {
 void main_init(State* state) {
   global = state;
   egg_init(state);
+
+  int exp = global->exp / state->level;
+  snprintf(buffer, BUFFER_SIZE, "Lvl %d\nExp %d%%", global->level, exp);
 }
 
 void main_load(Window* window) {
@@ -68,6 +79,12 @@ void main_load(Window* window) {
 
   layer_set_hidden(action_bar_layer_get_layer(action_bar), true);
   action_bar_layer_add_to_window(action_bar, window);
+
+  GFont font = fonts_get_system_font(FONT_KEY_GOTHIC_14);
+  int start = PBL_IF_RECT_ELSE(PBL_DISPLAY_WIDTH / 12, PBL_DISPLAY_WIDTH / 6);
+  int size = 85;
+  text_layer = helper_text_layer_create(window_layer, GRect(start, start, size, size), font, buffer);
+  layer_set_hidden(text_layer_get_layer(text_layer), true);
 }
 
 void main_unload() {
@@ -79,6 +96,8 @@ void main_unload() {
   gbitmap_destroy(action_bar_icon_up);
   gbitmap_destroy(action_bar_icon_dismiss);
   gbitmap_destroy(action_bar_icon_down);
+
+  text_layer_destroy(text_layer);
 
   egg_unload();
 }
