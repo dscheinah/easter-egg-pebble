@@ -53,14 +53,14 @@ void main_init(State* state) {
   global = state;
   egg_init(state);
 
-  int exp = global->exp / state->level;
+  int exp = global->exp / global->level;
 
   int done = global->quest_target_done;
   int target = global->quest_target;
   char quest[8] = "";
   char unit[4] = "";
   char counter[10] = "";
-  switch (state->quest) {
+  switch (global->quest) {
     case QUEST_STEPS:
       strncpy(quest, "Steps", 8);
       break;
