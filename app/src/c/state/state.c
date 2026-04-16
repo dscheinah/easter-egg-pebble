@@ -24,6 +24,7 @@ static State state = {
   .quest_duration_done = 0,
   .quest_target_done = 0,
   .quest_duration_start = 0,
+  .result = HEALTH_RESULT_NONE,
 };
 
 State* state_init() {

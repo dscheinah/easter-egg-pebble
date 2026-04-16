@@ -113,6 +113,8 @@ void main_load(Window* window) {
   egg_load(window);
   egg_render();
 
+  bool hide_status = global->result != HEALTH_RESULT_QUEST;
+
   Layer* window_layer = window_get_root_layer(window);
   GRect bounds = layer_get_bounds(window_layer);
 
@@ -129,14 +131,14 @@ void main_load(Window* window) {
   action_bar_layer_set_icon_press_animation(action_bar, BUTTON_ID_SELECT, ActionBarLayerIconPressAnimationNone);
   action_bar_layer_set_icon_animated(action_bar, BUTTON_ID_DOWN, action_bar_icon_down, true);
 
-  layer_set_hidden(action_bar_layer_get_layer(action_bar), true);
+  layer_set_hidden(action_bar_layer_get_layer(action_bar), hide_status);
   action_bar_layer_add_to_window(action_bar, window);
 
   GFont font = fonts_get_system_font(FONT_KEY_GOTHIC_14);
   int start = PBL_IF_RECT_ELSE(PBL_DISPLAY_WIDTH / 12, PBL_DISPLAY_WIDTH / 6);
   int size = 85;
   text_layer = helper_text_layer_create(window_layer, GRect(start, start, size, size), font, buffer);
-  layer_set_hidden(text_layer_get_layer(text_layer), true);
+  layer_set_hidden(text_layer_get_layer(text_layer), hide_status);
 }
 
 void main_unload() {

@@ -10,6 +10,12 @@
 #define QUEST_STEPS_TIME 5
 #define QUEST_ALL_TIME   6
 
+#define HealthResult unsigned short
+
+#define HEALTH_RESULT_NONE  0
+#define HEALTH_RESULT_QUEST 1
+#define HEALTH_RESULT_LEVEL 2
+
 typedef struct {
   HealthValue steps;
   HealthValue active;
@@ -30,4 +36,5 @@ typedef struct {
   unsigned short quest_duration_done;
   HealthValue quest_target_done;
   time_t quest_duration_start;
+  HealthResult result;
 } State;

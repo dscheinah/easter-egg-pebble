@@ -1,6 +1,5 @@
 #include <pebble.h>
 #include "health.h"
-#include "../state/global.h"
 
 static State* global;
 
@@ -40,6 +39,8 @@ static void create_quest() {
       global->quest_duration = (rand() % 24 + 1) * SECONDS_PER_HOUR;
       break;
   }
+
+  global->result = HEALTH_RESULT_QUEST;
 }
 
 static void update_target_done() {
@@ -66,10 +67,10 @@ static void update_target_done() {
   }
 }
 
-static bool update_quest() {
+static void update_quest() {
   if (!global->quest) {
     create_quest();
-    return false;
+    return;
   }
 
   switch (global->quest) {
@@ -109,12 +110,11 @@ static bool update_quest() {
   if (global->exp >= global->level * 100) {
     global->exp -= global->level * 100;
     global->level++;
-    return true;
+    global->result = HEALTH_RESULT_LEVEL;
   }
-  return false;
 }
 
-bool health_init(State* state) {
+void health_init(State* state) {
   global = state;
 
   time_t now = time(NULL);
@@ -151,5 +151,6 @@ bool health_init(State* state) {
   global->health->sleep = current.sleep;
   global->health->restful = current.restful;
 
-  return update_quest();
+  global->result = HEALTH_RESULT_NONE;
+  update_quest();
 }

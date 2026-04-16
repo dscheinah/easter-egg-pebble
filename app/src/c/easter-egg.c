@@ -9,22 +9,37 @@ static Window *s_window;
 
 State* state;
 
-static const uint32_t durations[] = {400, 100, 100, 100, 100, 100, 100};
-static const VibePattern vibes = {
-  .durations = durations,
-  .num_segments = ARRAY_LENGTH(durations),
+static const uint32_t durations_level[] = {400, 100, 100, 100, 100, 100, 100};
+static const VibePattern vibes_level = {
+  .durations = durations_level,
+  .num_segments = ARRAY_LENGTH(durations_level),
+};
+
+static const uint32_t durations_quest[] = {100, 100, 100, 100, 100};
+static const VibePattern vibes_quest = {
+  .durations = durations_quest,
+  .num_segments = ARRAY_LENGTH(durations_quest),
 };
 
 static void prv_init(void) {
   state = state_init();
-  bool notify = health_init(state);
-  bool wakeup = wakeup_init(state);
-  if (notify && !quiet_time_is_active()) {
-    vibes_enqueue_custom_pattern(vibes);
+  health_init(state);
+
+  if (!quiet_time_is_active()) {
+    switch (state->result) {
+      case HEALTH_RESULT_LEVEL:
+        vibes_enqueue_custom_pattern(vibes_level);
+        break;
+      case HEALTH_RESULT_QUEST:
+        vibes_enqueue_custom_pattern(vibes_quest);
+        break;
+    }
   }
-  if (wakeup && !notify) {
+
+  if (wakeup_init(state) && !state->result) {
     return;
   }
+
   main_init(state);
 
   s_window = window_create();
