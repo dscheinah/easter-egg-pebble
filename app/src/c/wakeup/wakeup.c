@@ -68,10 +68,12 @@ static void wakeup_handler() {
 bool wakeup_init(State* state) {
   global = state;
 
-  app_glance_reload(app_glance, NULL);
-
   wakeup_service_subscribe(wakeup_handler);
   wakeup_handler();
 
   return launch_reason() == APP_LAUNCH_WAKEUP;
+}
+
+void wakeup_deinit() {
+  app_glance_reload(app_glance, NULL);
 }

@@ -55,6 +55,8 @@ static void prv_deinit(void) {
   window_destroy(s_window);
 
   state_write();
+
+  wakeup_deinit();
 }
 
 int main(void) {
