@@ -2,16 +2,11 @@
 #include "wakeup.h"
 
 #define MAX_TRY 23
-#define TIMEOUT 30000
 #define BUFFER_SIZE 32
 
 static State* global;
 
 static char buffer[BUFFER_SIZE] = "";
-
-static void timeout() {
-  window_stack_pop_all(false);
-}
 
 static void app_glance(AppGlanceReloadSession* session, size_t limit, void* context) {
   if (limit < 1) {
@@ -78,10 +73,5 @@ bool wakeup_init(State* state) {
   wakeup_service_subscribe(wakeup_handler);
   wakeup_handler();
 
-  if (launch_reason() != APP_LAUNCH_WAKEUP) {
-    return false;
-  }
-  exit_reason_set(APP_EXIT_ACTION_PERFORMED_SUCCESSFULLY);
-  app_timer_register(TIMEOUT, timeout, NULL);
-  return true;
+  return launch_reason() == APP_LAUNCH_WAKEUP;
 }
